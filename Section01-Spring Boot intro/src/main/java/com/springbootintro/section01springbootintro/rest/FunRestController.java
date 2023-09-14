@@ -20,5 +20,10 @@ public class FunRestController {
         return "Run a hard 5k!";
     }
 
+    // expose a new endpoint for "fortune"
+    @GetMapping("/fortune")
+    public String getDaliyFortune() {
+        return "Today is your lucky day.";
+    }
 
 }
