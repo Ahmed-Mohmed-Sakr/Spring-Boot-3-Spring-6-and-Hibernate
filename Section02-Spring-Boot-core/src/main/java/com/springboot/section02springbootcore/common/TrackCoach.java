@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 //@Primary
-@Lazy
+//@Lazy
 public class TrackCoach implements Coach {
 
     public TrackCoach() {

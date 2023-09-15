@@ -11,12 +11,21 @@ public class DemoController {
 
 //    @Autowired
     private Coach myCoach;
+    private Coach anotherCoach;
 
-    @Autowired
-    public DemoController(@Qualifier("cricketCoach") Coach theCoach){
+        @Autowired
+    public DemoController(@Qualifier("cricketCoach") Coach theCoach,
+                          @Qualifier("cricketCoach") Coach theAnotherCoach){
         System.out.println("In constructor: " + getClass().getSimpleName());
         this.myCoach = theCoach;
+        this.anotherCoach = theAnotherCoach;
     }
+
+//    @Autowired
+//    public DemoController(@Qualifier("cricketCoach") Coach theCoach){
+//        System.out.println("In constructor: " + getClass().getSimpleName());
+//        this.myCoach = theCoach;
+//    }
 
 //    @Autowired
 //    public DemoController(Coach theCoach){
@@ -39,5 +48,11 @@ public class DemoController {
     public String getDailyWorkout() {
         return myCoach.getDailyWorkout();
     }
+
+    @GetMapping("/check")
+    public String check() {
+            return "Comapring beans: myCoach == anotherCoach, ? " + (myCoach == anotherCoach);
+    }
+
 
 }
