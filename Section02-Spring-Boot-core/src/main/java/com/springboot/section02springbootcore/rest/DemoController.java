@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoController {
 
+    @Autowired
     private Coach myCoach;
 
 //    @Autowired
@@ -16,10 +17,10 @@ public class DemoController {
 //    }
 
 
-    @Autowired
-    public void setCoach(Coach theCoach){
-        this.myCoach = theCoach;
-    }
+//    @Autowired
+//    public void setCoach(Coach theCoach){
+//        this.myCoach = theCoach;
+//    }
 
 //    @Autowired
 //    public void doSomeStaff(Coach theCoach){
