@@ -10,10 +10,21 @@ public class DemoController {
 
     private Coach myCoach;
 
+//    @Autowired
+//    public DemoController(Coach theCoach){
+//        this.myCoach = theCoach;
+//    }
+
+
     @Autowired
-    public DemoController(Coach theCoach){
+    public void setCoach(Coach theCoach){
         this.myCoach = theCoach;
     }
+
+//    @Autowired
+//    public void doSomeStaff(Coach theCoach){
+//        this.myCoach = theCoach;
+//    }
 
     @GetMapping("/dailyworkout")
     public String getDailyWorkout() {
