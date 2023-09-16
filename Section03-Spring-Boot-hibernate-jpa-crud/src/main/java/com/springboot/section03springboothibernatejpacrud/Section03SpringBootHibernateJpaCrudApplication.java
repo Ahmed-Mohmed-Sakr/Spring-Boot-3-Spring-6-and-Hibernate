@@ -22,10 +22,19 @@ public class Section03SpringBootHibernateJpaCrudApplication {
 //            createStudent(studentDAO);
 //            createMultipleStudents(studentDAO);
 //            readStudent(studentDAO);
+//            queryForStudents(studentDAO);
 
-            queryForStudents(studentDAO);
+            queryForStudentsByLastName(studentDAO);
 
         };
+    }
+
+    private void queryForStudentsByLastName(StudentDAO studentDAO) {
+        List<Student> theStudents = studentDAO.findByLastName("sakr");
+
+        for (Student tempStudent :  theStudents){
+            System.out.println(tempStudent);
+        }
     }
 
     private void queryForStudents(StudentDAO studentDAO) {
