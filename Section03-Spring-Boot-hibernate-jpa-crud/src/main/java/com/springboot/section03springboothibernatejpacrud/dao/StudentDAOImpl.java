@@ -34,7 +34,7 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     @Transactional
     public List<Student> findAll() {
-        TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student", Student.class);
+        TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student order by lastName asc ", Student.class);
 
         return theQuery.getResultList();
     }
