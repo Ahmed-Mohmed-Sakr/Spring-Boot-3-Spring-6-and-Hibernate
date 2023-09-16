@@ -5,4 +5,6 @@ import com.springboot.section03springboothibernatejpacrud.entity.Student;
 public interface StudentDAO {
 
     void save(Student student);
+
+    Student findById(int id);
 }

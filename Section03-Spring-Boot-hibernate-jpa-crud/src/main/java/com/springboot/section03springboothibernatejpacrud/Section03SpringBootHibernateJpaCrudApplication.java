@@ -18,8 +18,25 @@ public class Section03SpringBootHibernateJpaCrudApplication {
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return runner ->  {
 //            createStudent(studentDAO);
-            createMultipleStudents(studentDAO);
+//            createMultipleStudents(studentDAO);
+
+            readStudent(studentDAO);
         };
+    }
+
+    private void readStudent(StudentDAO studentDAO) {
+        System.out.println("creating new student object .......");
+        Student tempStudent = new Student("ahmed","sakr","ahmedsakr07407@gmail.com");
+
+        System.out.println("Saving the student ........");
+        studentDAO.save(tempStudent);
+
+        int theId = tempStudent.getId();
+        System.out.println("Saved student, Generated id: " + theId);
+
+        System.out.println("Retriving student with id: " + theId);
+        Student myStudent = studentDAO.findById(theId);
+        System.out.println("Found the student :" + myStudent);
     }
 
     private void createMultipleStudents(StudentDAO studentDAO) {

@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class StudentDAOImpl implements StudentDAO{
+public class StudentDAOImpl implements StudentDAO {
 
     EntityManager entityManager;
 
     @Autowired
-    public StudentDAOImpl(EntityManager entityManager){
+    public StudentDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -20,5 +20,11 @@ public class StudentDAOImpl implements StudentDAO{
     @Transactional
     public void save(Student student) {
         entityManager.persist(student);
+    }
+
+    @Override
+    @Transactional
+    public Student findById(int id) {
+        return entityManager.find(Student.class, id);
     }
 }
