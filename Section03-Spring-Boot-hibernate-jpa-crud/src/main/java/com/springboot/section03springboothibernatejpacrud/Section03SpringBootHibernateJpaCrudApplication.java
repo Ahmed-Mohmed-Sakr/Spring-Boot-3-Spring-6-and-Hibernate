@@ -1,5 +1,7 @@
 package com.springboot.section03springboothibernatejpacrud;
 
+import com.springboot.section03springboothibernatejpacrud.dao.StudentDAO;
+import com.springboot.section03springboothibernatejpacrud.entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,10 +15,36 @@ public class Section03SpringBootHibernateJpaCrudApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner() {
+    public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return runner ->  {
-            System.out.println("Hello World!");
+//            createStudent(studentDAO);
+            createMultipleStudents(studentDAO);
         };
     }
+
+    private void createMultipleStudents(StudentDAO studentDAO) {
+        System.out.println("creating 3 student object .......");
+        Student tempStudent1 = new Student("nada","ali","nada@gmail.com");
+        Student tempStudent2 = new Student("ali","sakr","ali@gmail.com");
+        Student tempStudent3 = new Student("zainb","nader","zainb@gmail.com");
+
+        System.out.println("Saving 3 student ........");
+        studentDAO.save(tempStudent1);
+        studentDAO.save(tempStudent2);
+        studentDAO.save(tempStudent3);
+    }
+
+    private void createStudent(StudentDAO studentDAO) {
+
+        System.out.println("creating new student object .......");
+        Student tempStudent = new Student("ahmed","sakr","ahmedsakr07407@gmail.com");
+
+        System.out.println("Saving the student ........");
+        studentDAO.save(tempStudent);
+
+        System.out.println("Saved student, Generated id: " + tempStudent.getId());
+
+    }
+
 
 }
