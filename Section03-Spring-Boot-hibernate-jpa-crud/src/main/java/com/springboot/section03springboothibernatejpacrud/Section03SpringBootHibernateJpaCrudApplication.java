@@ -23,10 +23,21 @@ public class Section03SpringBootHibernateJpaCrudApplication {
 //            createMultipleStudents(studentDAO);
 //            readStudent(studentDAO);
 //            queryForStudents(studentDAO);
+//            queryForStudentsByLastName(studentDAO);
 
-            queryForStudentsByLastName(studentDAO);
+            updateStudent(studentDAO);
 
         };
+    }
+
+    private void updateStudent(StudentDAO studentDAO) {
+        Student tempStudent = studentDAO.findById(1);
+
+        tempStudent.setFirstName("Mai");
+
+        studentDAO.update(tempStudent);
+
+        System.out.println(tempStudent);
     }
 
     private void queryForStudentsByLastName(StudentDAO studentDAO) {

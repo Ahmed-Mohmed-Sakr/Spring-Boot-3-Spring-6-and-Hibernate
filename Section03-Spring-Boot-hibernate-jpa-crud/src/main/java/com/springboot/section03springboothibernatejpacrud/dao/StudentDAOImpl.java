@@ -40,6 +40,7 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
+    @Transactional
     public List<Student> findByLastName(String theLastName) {
         TypedQuery<Student> thQuery = entityManager.createQuery("FROM Student WHERE lastName=:theData",Student.class);
 
@@ -47,4 +48,12 @@ public class StudentDAOImpl implements StudentDAO {
 
         return thQuery.getResultList();
     }
+
+    @Override
+    @Transactional
+    public void update(Student theStudent) {
+        entityManager.merge(theStudent);
+    }
+
+
 }
