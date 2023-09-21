@@ -24,10 +24,29 @@ public class Section03SpringBootHibernateJpaCrudApplication {
 //            readStudent(studentDAO);
 //            queryForStudents(studentDAO);
 //            queryForStudentsByLastName(studentDAO);
+//            updateStudent(studentDAO);
+//            deleteStudent(studentDAO);
 
-            updateStudent(studentDAO);
+            deleteAllStudents(studentDAO);
+
 
         };
+    }
+
+    private void deleteAllStudents(StudentDAO studentDAO) {
+        int numRowsDeleted = studentDAO.deleteAll();
+
+        System.out.println("Deleted row count: " + numRowsDeleted);
+    }
+
+    private void deleteStudent(StudentDAO studentDAO) {
+
+        Integer studentId = 2;
+
+        studentDAO.delete(studentId);
+
+        System.out.println("Deleting student id :" + studentId);
+
     }
 
     private void updateStudent(StudentDAO studentDAO) {
