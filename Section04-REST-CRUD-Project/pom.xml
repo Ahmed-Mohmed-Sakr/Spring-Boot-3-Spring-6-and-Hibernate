@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.springboot</groupId>
-    <artifactId>Section04-REST-CRUD-Project</artifactId>
+    <artifactId>Section04-REST-CRUD-Project-v1</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Section04-REST-CRUD-Project</name>
     <description>Section04-REST-CRUD-Project</description>
