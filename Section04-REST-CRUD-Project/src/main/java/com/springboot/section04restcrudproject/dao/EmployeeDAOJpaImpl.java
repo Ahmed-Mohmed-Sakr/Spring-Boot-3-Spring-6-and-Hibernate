@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class EmployeeDAOJpaImpl implements EmployeeDAO{
+public class EmployeeDAOJpaImpl implements EmployeeDAO {
 
     private EntityManager entityManager;
 
@@ -25,5 +25,26 @@ public class EmployeeDAOJpaImpl implements EmployeeDAO{
         List<Employee> theEmployees = theQuery.getResultList();
 
         return theEmployees;
+    }
+
+    @Override
+    public Employee findById(int theId) {
+        Employee theEmployee = entityManager.find(Employee.class, theId);
+
+        return theEmployee;
+    }
+
+    @Override
+    public Employee save(Employee theEmployee) {
+        Employee dpEmployee = entityManager.merge(theEmployee);
+
+        return dpEmployee;
+    }
+
+    @Override
+    public void deleteById(int theId) {
+        Employee theEmployee = entityManager.find(Employee.class, theId);
+
+        entityManager.remove(theEmployee);
     }
 }
