@@ -1,4 +1,4 @@
-package com.springboot.section04restcrudproject.entity;
+package com.springboot.section04restcrudprojectV2.entity;
 
 import jakarta.persistence.*;
 

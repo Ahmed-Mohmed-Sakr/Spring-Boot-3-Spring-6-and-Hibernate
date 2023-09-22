@@ -1,8 +1,7 @@
-package com.springboot.section04restcrudproject.rest;
+package com.springboot.section04restcrudprojectV2.rest;
 
-import com.springboot.section04restcrudproject.dao.EmployeeDAO;
-import com.springboot.section04restcrudproject.entity.Employee;
-import com.springboot.section04restcrudproject.service.EmployeeService;
+import com.springboot.section04restcrudprojectV2.entity.Employee;
+import com.springboot.section04restcrudprojectV2.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

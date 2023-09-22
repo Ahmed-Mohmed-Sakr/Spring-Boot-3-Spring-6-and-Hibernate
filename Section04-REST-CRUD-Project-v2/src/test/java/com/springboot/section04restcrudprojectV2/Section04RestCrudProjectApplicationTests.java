@@ -1,4 +1,4 @@
-package com.springboot.section04restcrudproject;
+package com.springboot.section04restcrudprojectV2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
