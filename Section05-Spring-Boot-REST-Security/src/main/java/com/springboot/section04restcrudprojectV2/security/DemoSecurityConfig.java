@@ -21,7 +21,7 @@ public class DemoSecurityConfig {
      * to use in memory users but with our custom tables
      */
         @Bean
-    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+    public UserDetailsManager userDetailsManagerV3(DataSource dataSource) {
             JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
             jdbcUserDetailsManager.setUsersByUsernameQuery(
@@ -58,36 +58,36 @@ public class DemoSecurityConfig {
      * add support for JDBC users
      */
 //    @Bean
-//    public UserDetailsManager userDetailsManager(DataSource dataSource) {
-//        return new JdbcUserDetailsManager(dataSource);
-//    }
+    public UserDetailsManager userDetailsManagerV2(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
+    }
 
 
     /**
      * to use in memory users
      */
 //    @Bean
-//    public InMemoryUserDetailsManager userDetailsManager() {
-//        UserDetails ahmed = User.builder()
-//                .username("ahmed")
-//                .password("{noop}ahmed")
-//                .roles("EMPLOYEE", "MANAGER", "ADMIN")
-//                .build();
-//
-//        UserDetails nader = User.builder()
-//                .username("nader")
-//                .password("{noop}nader")
-//                .roles("EMPLOYEE", "MANAGER")
-//                .build();
-//
-//        UserDetails ali = User.builder()
-//                .username("ali")
-//                .password("{noop}ali")
-//                .roles("EMPLOYEE")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(ahmed, nader, ali);
-//    }
+    public InMemoryUserDetailsManager userDetailsManagerV1() {
+        UserDetails ahmed = User.builder()
+                .username("ahmed")
+                .password("{noop}ahmed")
+                .roles("EMPLOYEE", "MANAGER", "ADMIN")
+                .build();
+
+        UserDetails nader = User.builder()
+                .username("nader")
+                .password("{noop}nader")
+                .roles("EMPLOYEE", "MANAGER")
+                .build();
+
+        UserDetails ali = User.builder()
+                .username("ali")
+                .password("{noop}ali")
+                .roles("EMPLOYEE")
+                .build();
+
+        return new InMemoryUserDetailsManager(ahmed, nader, ali);
+    }
 
 
 }
