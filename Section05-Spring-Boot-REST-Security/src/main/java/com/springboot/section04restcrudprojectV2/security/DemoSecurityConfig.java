@@ -17,15 +17,23 @@ import javax.sql.DataSource;
 @Configuration
 public class DemoSecurityConfig {
 
-
     /**
-     * add support for JDBC users
+     * to use in memory users but with our custom tables
      */
-    @Bean
+        @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
-        return new JdbcUserDetailsManager(dataSource);
-    }
+            JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
+            jdbcUserDetailsManager.setUsersByUsernameQuery(
+                    "select user_id, pw, active from members where user_id=?"
+            );
+
+            jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
+                    "select user_id, role from roles where user_id=?"
+            );
+
+            return jdbcUserDetailsManager;
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http)throws Exception{
@@ -45,6 +53,15 @@ public class DemoSecurityConfig {
 
         return http.build();
     }
+
+    /**
+     * add support for JDBC users
+     */
+//    @Bean
+//    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+//        return new JdbcUserDetailsManager(dataSource);
+//    }
+
 
     /**
      * to use in memory users
