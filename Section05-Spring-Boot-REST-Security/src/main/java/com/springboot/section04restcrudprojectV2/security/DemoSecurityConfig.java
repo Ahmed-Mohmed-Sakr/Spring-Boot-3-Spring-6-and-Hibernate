@@ -8,33 +8,24 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class DemoSecurityConfig {
 
+
+    /**
+     * add support for JDBC users
+     */
     @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
-        UserDetails ahmed = User.builder()
-                .username("ahmed")
-                .password("{noop}ahmed")
-                .roles("EMPLOYEE", "MANAGER", "ADMIN")
-                .build();
-
-        UserDetails nader = User.builder()
-                .username("nader")
-                .password("{noop}nader")
-                .roles("EMPLOYEE", "MANAGER")
-                .build();
-
-        UserDetails ali = User.builder()
-                .username("ali")
-                .password("{noop}ali")
-                .roles("EMPLOYEE")
-                .build();
-
-        return new InMemoryUserDetailsManager(ahmed, nader, ali);
+    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
     }
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http)throws Exception{
@@ -54,5 +45,32 @@ public class DemoSecurityConfig {
 
         return http.build();
     }
+
+    /**
+     * to use in memory users
+     */
+//    @Bean
+//    public InMemoryUserDetailsManager userDetailsManager() {
+//        UserDetails ahmed = User.builder()
+//                .username("ahmed")
+//                .password("{noop}ahmed")
+//                .roles("EMPLOYEE", "MANAGER", "ADMIN")
+//                .build();
+//
+//        UserDetails nader = User.builder()
+//                .username("nader")
+//                .password("{noop}nader")
+//                .roles("EMPLOYEE", "MANAGER")
+//                .build();
+//
+//        UserDetails ali = User.builder()
+//                .username("ali")
+//                .password("{noop}ali")
+//                .roles("EMPLOYEE")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(ahmed, nader, ali);
+//    }
+
 
 }
