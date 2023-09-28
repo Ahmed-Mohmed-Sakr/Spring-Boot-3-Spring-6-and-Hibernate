@@ -89,5 +89,4 @@ public class DemoSecurityConfig {
         return new InMemoryUserDetailsManager(ahmed, nader, ali);
     }
 
-
 }
