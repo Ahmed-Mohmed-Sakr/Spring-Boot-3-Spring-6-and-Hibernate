@@ -3,6 +3,7 @@ package com.springboot.section09jpa_hibernates_advanced;
 import com.springboot.section09jpa_hibernates_advanced.entity.Course;
 import com.springboot.section09jpa_hibernates_advanced.entity.Instructor;
 import com.springboot.section09jpa_hibernates_advanced.entity.InstructorDetail;
+import com.springboot.section09jpa_hibernates_advanced.repository.CourseRepository;
 import com.springboot.section09jpa_hibernates_advanced.repository.InstructorRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,7 +22,7 @@ public class Section09JpaHibernatesAdvancedApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(InstructorRepository repository) {
+	public CommandLineRunner commandLineRunner(InstructorRepository repository, CourseRepository courseRepository) {
 		return runner -> {
 //			createInstractor(repository);
 //			getInstractorByI(repository);
@@ -29,9 +30,34 @@ public class Section09JpaHibernatesAdvancedApplication {
 
 //			createInstractorWithCourses(repository);\
 
-			findInstractorWithCourses(repository);
-
+//			findInstractorWithCourses(repository);
+//			updateCourse(courseRepository);
+			deleteInstractor(repository);
 		};
+	}
+
+	private void deleteInstractor(InstructorRepository repository) {
+		Instructor instructor = repository.findById(1).get();
+
+		List<Course> courses= repository.findCoursesByInstructorId(1);
+
+		for (Course course:courses){
+			course.setInstructor(null);
+		}
+
+		instructor.setCourses(courses);
+
+
+		repository.delete(instructor);
+	}
+
+	private void updateCourse(CourseRepository courseRepository) {
+		Course theCourse = courseRepository.findById(10).get();
+
+		theCourse.setTitle("my first course");
+
+		courseRepository.save(theCourse);
+
 	}
 
 	private void findInstractorWithCourses(InstructorRepository repository) {
