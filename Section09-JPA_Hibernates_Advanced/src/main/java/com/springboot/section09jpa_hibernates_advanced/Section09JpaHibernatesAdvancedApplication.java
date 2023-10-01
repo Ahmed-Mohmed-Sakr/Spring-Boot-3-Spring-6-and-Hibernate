@@ -1,5 +1,6 @@
 package com.springboot.section09jpa_hibernates_advanced;
 
+import com.springboot.section09jpa_hibernates_advanced.entity.Course;
 import com.springboot.section09jpa_hibernates_advanced.entity.Instructor;
 import com.springboot.section09jpa_hibernates_advanced.entity.InstructorDetail;
 import com.springboot.section09jpa_hibernates_advanced.repository.InstructorRepository;
@@ -20,8 +21,42 @@ public class Section09JpaHibernatesAdvancedApplication {
 		return runner -> {
 //			createInstractor(repository);
 //			getInstractorByI(repository);
-			deleteInstractorByID(repository);
+//			deleteInstractorByID(repository);
+
+			createInstractorWithCourses(repository);
+
 		};
+	}
+
+	private void createInstractorWithCourses(InstructorRepository repository) {
+		InstructorDetail instructorDetail = InstructorDetail.builder()
+				.youtubeChannel("youtube.com")
+				.hobby("football")
+				.build();
+
+		Instructor tempInstructor =
+				Instructor.builder()
+						.firstName("ahmed")
+						.lastName("sakr")
+						.email("ahmed@gmail.com")
+						.instructorDetail(instructorDetail)
+						.build();
+
+
+		Course theCourse1 =
+				Course.builder()
+						.title("new course 1")
+						.build();
+
+		Course theCourse2 =
+				Course.builder()
+						.title("new course 2")
+						.build();
+
+		tempInstructor.addCourse(theCourse1);
+		tempInstructor.addCourse(theCourse2);
+
+		repository.save(tempInstructor);
 	}
 
 	private void deleteInstractorByID(InstructorRepository repository) {
