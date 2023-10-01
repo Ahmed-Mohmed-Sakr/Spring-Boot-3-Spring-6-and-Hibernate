@@ -9,6 +9,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @SpringBootApplication
 public class Section09JpaHibernatesAdvancedApplication {
 
@@ -23,9 +27,23 @@ public class Section09JpaHibernatesAdvancedApplication {
 //			getInstractorByI(repository);
 //			deleteInstractorByID(repository);
 
-			createInstractorWithCourses(repository);
+//			createInstractorWithCourses(repository);\
+
+			findInstractorWithCourses(repository);
 
 		};
+	}
+
+	private void findInstractorWithCourses(InstructorRepository repository) {
+//		Optional<Instructor> instructor = repository.findById(1);
+//
+//		if (instructor.isEmpty()) {
+//			System.out.println("nothing here");
+//		}
+//
+////		System.out.println(instructor.get().getCourses().stream().map(Course::getTitle).collect(Collectors.toList()));
+
+		System.out.println(repository.findCoursesByInstructorId(1).stream().map(Course::getTitle).collect(Collectors.toList()));
 	}
 
 	private void createInstractorWithCourses(InstructorRepository repository) {
